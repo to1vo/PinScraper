@@ -1,4 +1,4 @@
-# Pinterest-search app
+# PinScraper
 
 Node.js(express, puppeteer, cors), React(JavaScript, HTLM, CSS)
 
