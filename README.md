@@ -1,18 +1,18 @@
-# Pinterest-search app
+# PinScraper 📌
+Little web scraping experiment created with Node.js and React (Vite, Vanilla JS)
 
-Node.js(express, puppeteer, cors), React(JavaScript, HTLM, CSS)
+So this app let's the user search images from [Pinterest](https://fi.pinterest.com/) that has made searching for pictures pretty annoying without an account. <br> This app is a solution for that (only for personal use obviously)
 
-[Pinterest](https://fi.pinterest.com/) "webscrape" sovellus, jossa käyttäjä voi hakea kuvia pinterestistä ja ne tulevat näkyviin sivulle. 
-Ohjelmassa on siis server.js tiedosto, joka pyörii toisella terminaalilla, se hakee pyynnöstä [puppeteerin](https://pptr.dev/) avulla pinterestistä käyttäjän antamalla hakusanalla kuvien lähteet ja palauttaa ne, jonka jälkeen kuvat tulevat käyttäjälle näkyviin.
+## Features
+- Search images from Pinterest
+- Similar dynamic UI to Pinterest
+- User friendly error notifications
 
-## Ominaisuudet
-- Käyttäjä voi hakea sivun hakutoiminolla pinterestistä kuvia
-- Sivulle tulee noin 25 ensimmäistä kuvaa
-- Lisäksi ohjelmassa on
-    - pinterest tyylinen dynaaminen layout
-    - sekä muita samankaltaisuuksia
-    - virheiden tarkastus
-    - lataus ja virhe ilmoitukset
+## Updates
+- Image title
+- Image description
+- Clicking the images functionality
+- Load more images on scroll
 
-## Jatkokehitys
-- voisi hakea myös kuvien mahdolliset otsikot/descriptionit
+<br>
+Toivo Lindholm
