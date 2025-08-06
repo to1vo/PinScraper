@@ -18,7 +18,7 @@ function Nav(){
         <nav id="navbar">
             <div id="title-container">
                 <img id="logo" src={logo} alt="logo" />
-                <h3>Pinterest</h3>
+                <h3>&nbsp;PinScraper</h3>
             </div>
             <SearchInput setError={setError} fetcher={fetcher} setOverlay={setOverlay} loading={loading} />
         </nav>
