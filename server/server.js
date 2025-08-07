@@ -46,10 +46,12 @@ app.get("/", async (req, res) => {
         //close the browser
         await browser.close();
     } catch(err){
-        console.log("Some error occured or cant find anything!");
+        console.log("Error occured or cant find anything!");
         res.json(null);
         await browser.close();
     }
 });
 
-app.listen(3000);
+app.listen(3000, () => {
+    console.log("Server listening on port 3000");
+});

@@ -5,12 +5,13 @@ import { ImagesContext } from "../App.jsx";
 import logo from "../assets/logo.png";
 
 function Nav(){
-    const [, setImages] = useContext(ImagesContext);
+    const [images, setImages] = useContext(ImagesContext);
     const { data, loading, error, setError, fetcher } = useFetchPinterestImages();
     const [overlay, setOverlay] = useState(false);
 
     useEffect(() => {
-        setImages(data);
+        console.log(data);
+        setImages(() => [...images, ...data]);
     }, [data]);
 
     return (

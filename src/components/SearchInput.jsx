@@ -1,24 +1,52 @@
-import { useEffect, useRef, useContext } from "react";
+import { useEffect, useRef, useContext, useState } from "react";
 import { ImagesContext } from "../App.jsx";
 
 function SearchInput({ setError, fetcher, setOverlay, loading }) {
     const [images, setImages] = useContext(ImagesContext);
     const inputRef = useRef(null);
+    const currentInput = useRef("");
+    const loadingRef = useRef(false);
 
     useEffect(() => {
         const handleSearch = (e) => {
             const inputValue = inputRef.current.value.trim();
             if(e.key == "Enter" && !inputValue == "" && document.activeElement === inputRef.current && !loading){
                 inputRef.current.blur();
+                currentInput.current = inputValue;
                 setImages(null);
                 fetcher(inputValue);
             }
         }
 
-        window.addEventListener("keypress", handleSearch);
+        const handleScroll = (e) => {
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const fullHeight = document.documentElement.scrollHeight;
+            
+            if(scrollY + windowHeight >= fullHeight - 400){
+                if(!loadingRef.current){
+                    console.log("LOADING MORE IMAGES...");
+                    fetcher(currentInput.current);
+                    loadingRef.current = true;
+                }
+            }
+        }
 
-        return () => window.removeEventListener("keypress", handleSearch);
+        window.addEventListener("keypress", handleSearch);
+        window.addEventListener("scroll", handleScroll);
+        // document.querySelector("#image-container").addEventListener("scrollend", handleScroll);
+
+        return () => {
+            window.removeEventListener("keypress", handleSearch);
+            window.removeEventListener("scroll", handleScroll);
+        }
     }, []);
+
+    useEffect(() => {
+        if(!loading){
+            loadingRef.current = false;
+        }
+    }, [loading]);
 
     const clearInput = () => {
         if(inputRef.current.value != ""){
