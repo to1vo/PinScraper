@@ -1,7 +1,7 @@
 import { useEffect, useRef, useContext, useState } from "react";
 import { ImagesContext } from "../App.jsx";
 
-function SearchInput({ setError, fetcher, setOverlay, loading }) {
+function SearchInput({ setError, fetcher, setOverlay, loading, sessionIdRef, handleSessionClosing }) {
     const [images, setImages] = useContext(ImagesContext);
     const inputRef = useRef(null);
     const currentInput = useRef("");
@@ -11,10 +11,15 @@ function SearchInput({ setError, fetcher, setOverlay, loading }) {
         const handleSearch = (e) => {
             const inputValue = inputRef.current.value.trim();
             if(e.key == "Enter" && !inputValue == "" && document.activeElement === inputRef.current && !loading){
+                //check if there is a session
+                if(sessionIdRef.current != null){
+                    handleSessionClosing();
+                }
+
                 inputRef.current.blur();
                 currentInput.current = inputValue;
                 setImages(null);
-                fetcher(inputValue);
+                fetcher(inputValue, "/");
             }
         }
 
@@ -26,7 +31,7 @@ function SearchInput({ setError, fetcher, setOverlay, loading }) {
             if(scrollY + windowHeight >= fullHeight - 400){
                 if(!loadingRef.current){
                     console.log("LOADING MORE IMAGES...");
-                    fetcher(currentInput.current);
+                    fetcher(currentInput.current, "/more");
                     loadingRef.current = true;
                 }
             }
@@ -34,7 +39,6 @@ function SearchInput({ setError, fetcher, setOverlay, loading }) {
 
         window.addEventListener("keypress", handleSearch);
         window.addEventListener("scroll", handleScroll);
-        // document.querySelector("#image-container").addEventListener("scrollend", handleScroll);
 
         return () => {
             window.removeEventListener("keypress", handleSearch);

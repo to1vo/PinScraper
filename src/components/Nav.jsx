@@ -4,14 +4,21 @@ import SearchInput from "./SearchInput.jsx";
 import { ImagesContext } from "../App.jsx";
 import logo from "../assets/logo.png";
 
-function Nav(){
+function Nav({ sessionIdRef, handleSessionClosing }){
     const [images, setImages] = useContext(ImagesContext);
     const { data, loading, error, setError, fetcher } = useFetchPinterestImages();
     const [overlay, setOverlay] = useState(false);
 
     useEffect(() => {
         console.log(data);
-        setImages(() => [...images, ...data]);
+        if(data != null){
+            if(images != null){
+                setImages(() => [...images, ...data.images]);
+                return;
+            }
+            sessionIdRef.current = data.sessionId;
+            setImages(data.images);
+        }
     }, [data]);
 
     return (
@@ -21,7 +28,7 @@ function Nav(){
                 <img id="logo" src={logo} alt="logo" />
                 <h3>&nbsp;PinScraper</h3>
             </div>
-            <SearchInput setError={setError} fetcher={fetcher} setOverlay={setOverlay} loading={loading} />
+            <SearchInput setError={setError} fetcher={fetcher} setOverlay={setOverlay} loading={loading} sessionIdRef={sessionIdRef} handleSessionClosing={handleSessionClosing} />
         </nav>
         {error && <h2 id="searchText">Haulla ei löytynyt mitään tai siinä tapahtui virhe</h2>}
         {loading && <h2 id="searchText">Haetaan...</h2>}
