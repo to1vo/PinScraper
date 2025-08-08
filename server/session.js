@@ -1,7 +1,6 @@
 class Session {
     id;
-    searchValue = "";
-    loadedImages = [];
+    loadedImagesNum = 0;
     scroll = 150;
 
     constructor(id = 0, searchValue){
@@ -9,19 +8,12 @@ class Session {
         this.searchValue = searchValue;
     }
 
-    addImage(image){
-        this.loadedImages.push(image);
-    }
-
-    imageAlreadyLoaded(imageSrc){
-        for(let i=0; i<this.loadedImages.length; i++){
-            if(this.loadedImages[i].src = imageSrc) return true;
-        }
-        return false;
+    addImage(){
+        this.loadedImagesNum += 1;
     }
 
     update(){
-        this.scroll += 400;
+        this.scroll += 1000;
     }
 }
 

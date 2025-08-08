@@ -13,7 +13,7 @@ function Nav({ sessionIdRef, handleSessionClosing }){
         console.log(data);
         if(data != null){
             if(images != null){
-                setImages(() => [...images, ...data.images]);
+                setImages(() => [...images, ...data]);
                 return;
             }
             sessionIdRef.current = data.sessionId;

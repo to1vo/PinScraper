@@ -31,7 +31,7 @@ function SearchInput({ setError, fetcher, setOverlay, loading, sessionIdRef, han
             if(scrollY + windowHeight >= fullHeight - 400){
                 if(!loadingRef.current){
                     console.log("LOADING MORE IMAGES...");
-                    fetcher(currentInput.current, "/more");
+                    fetcher(currentInput.current, "/more", sessionIdRef.current);
                     loadingRef.current = true;
                 }
             }
