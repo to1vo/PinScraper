@@ -12,7 +12,6 @@ So this app let's the user search images from [Pinterest](https://fi.pinterest.c
 - Image title
 - Image description
 - Clicking the images functionality
-- Load more images on scroll
 
 <br>
 Toivo Lindholm
