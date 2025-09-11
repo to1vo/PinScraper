@@ -14,4 +14,4 @@ So this app let's the user search images from [Pinterest](https://fi.pinterest.c
 - Clicking the images functionality
 
 <br>
-Toivo Lindholm
+Toivo Lindholm 2025
